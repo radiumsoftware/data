@@ -313,7 +313,9 @@ var DirtyState = {
     becameError: function(record) {
       record.transitionTo('error');
       record.send('invokeLifecycleCallbacks');
-    }
+    },
+
+    rollback: Ember.K
   },
 
   // A record is in the `invalid` state when its client-side
@@ -683,7 +685,9 @@ var RootState = {
       // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
       loadedData: Ember.K,
 
-      becomeDirty: Ember.K
+      becomeDirty: Ember.K,
+
+      rollback: Ember.K
     },
 
     // Once the adapter indicates that the deletion has
