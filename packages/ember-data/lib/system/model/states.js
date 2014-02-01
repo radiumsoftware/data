@@ -681,7 +681,9 @@ var RootState = {
       },
 
       // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
-      loadedData: Ember.K
+      loadedData: Ember.K,
+
+      becomeDirty: Ember.K
     },
 
     // Once the adapter indicates that the deletion has
@@ -699,7 +701,9 @@ var RootState = {
       invokeLifecycleCallbacks: function(record) {
         record.trigger('didDelete', record);
         record.trigger('didCommit', record);
-      }
+      },
+
+      becomeDirty: Ember.K
     }
   },
 
