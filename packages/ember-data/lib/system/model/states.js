@@ -482,7 +482,7 @@ var RootState = {
     becameError: function(record) {
       record.transitionTo('error');
       record.send('invokeLifecycleCallbacks');
-    }
+    },
 
     unloadRecord: Ember.K
   },
