@@ -1,4 +1,3 @@
-/**
   @module ember-data
 */
 
@@ -483,6 +482,8 @@ var RootState = {
       record.transitionTo('error');
       record.send('invokeLifecycleCallbacks');
     }
+
+    unloadRecord: Ember.K
   },
 
   // A record enters this state when its data is populated.
@@ -511,6 +512,8 @@ var RootState = {
       firstTime: {
         // FLAGS
         isLoaded: false,
+
+        becomeDirty: Ember.K,
 
         exit: function(record) {
           once(function() {
@@ -646,7 +649,10 @@ var RootState = {
           t.remove(record);
         });
         record.transitionTo('loaded.materializing');
-      }
+      },
+
+      // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
+      loadedData: Ember.K
     },
 
     // After a record's transaction is committing, but
@@ -671,7 +677,10 @@ var RootState = {
         record.transitionTo('saved');
 
         record.send('invokeLifecycleCallbacks');
-      }
+      },
+
+      // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
+      loadedData: Ember.K
     },
 
     // Once the adapter indicates that the deletion has
@@ -706,6 +715,7 @@ var RootState = {
     }
   }
 };
+
 
 var hasOwnProp = {}.hasOwnProperty;
 
