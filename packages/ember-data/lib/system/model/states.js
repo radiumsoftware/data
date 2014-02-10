@@ -486,7 +486,8 @@ var RootState = {
       record.send('invokeLifecycleCallbacks');
     },
 
-    unloadRecord: Ember.K
+    unloadRecord: Ember.K,
+    reloadRecord: Ember.K
   },
 
   // A record enters this state when its data is populated.
