@@ -487,7 +487,9 @@ var RootState = {
     },
 
     unloadRecord: Ember.K,
-    reloadRecord: Ember.K
+    reloadRecord: function(model) {
+      model.store.reloadRecord(model);
+    }
   },
 
   // A record enters this state when its data is populated.
