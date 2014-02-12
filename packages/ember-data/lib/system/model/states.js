@@ -548,7 +548,9 @@ var RootState = {
 
       materializingData: function(record) {
         record.transitionTo('loaded.materializing');
-      }
+      },
+
+      reloadRecord: Ember.K,
     },
 
     // If there are no local changes to a record, it remains
