@@ -306,20 +306,28 @@ DS.Model = Ember.Object.extend(Ember.Evented, LoadPromise, {
     if (cachedValue) {
       var type = get(this.constructor, 'relationshipsByName').get(key).type;
       var store = get(this, 'store');
-      var ids = this._data[key] || [];
+      var ids = this._data[key] || [],
+          references = [];
 
-      var references = map(ids, function(id) {
-        if (typeof id === 'object') {
-          if( id.clientId ) {
-            // if it was already a reference, return the reference
-            return id;
-          } else {
-            // <id, type> tuple for a polymorphic association.
-            return store.referenceForId(id.type, id.id);
+      if(Ember.isArray(ids)) {
+        references = map(ids, function(id) {
+          if (typeof id === 'object') {
+            if( id.clientId ) {
+              // if it was already a reference, return the reference
+              return id;
+            } else {
+              // <id, type> tuple for a polymorphic association.
+              return store.referenceForId(id.type, id.id);
+            }
           }
-        }
-        return store.referenceForId(type, id);
-      });
+          return store.referenceForId(type, id);
+        });
+      } else {
+        var adapter = store.adapterForType(type),
+            relationship = get(this.constructor, 'relationshipsByName').get(key);
+
+        adapter.findHasMany(store, this, relationship, ids);
+      }
 
       set(cachedValue, 'content', Ember.A(references));
     }
