@@ -427,6 +427,10 @@ updatedState.uncommitted.deleteRecord = function(record) {
   record.clearRelationships();
 };
 
+updatedState.inFlight.loadedData = Ember.K;
+
+updatedState.uncommitted.loadedData = Ember.K;
+
 var RootState = {
   // FLAGS
   isEmpty: false,
