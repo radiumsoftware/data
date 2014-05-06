@@ -691,7 +691,6 @@ var RootState = {
         record.send('invokeLifecycleCallbacks');
       },
 
-      // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
       loadedData: Ember.K,
 
       becomeDirty: Ember.K,
@@ -704,6 +703,12 @@ var RootState = {
         record.transitionTo('loaded.saved');
 
         record.trigger('becameInvalid', record);
+      },
+
+      becameError: function(record) {
+        record.transitionTo('loaded.saved');
+
+        record.trigger('becameError', record);
       }
     },
 
