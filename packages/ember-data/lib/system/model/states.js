@@ -696,7 +696,15 @@ var RootState = {
 
       becomeDirty: Ember.K,
 
-      rollback: Ember.K
+      rollback: Ember.K,
+
+      becameInvalid: function(record, errors) {
+        set(record, 'errors', errors);
+
+        record.transitionTo('loaded.saved');
+
+        record.trigger('becameInvalid', record);
+      }
     },
 
     // Once the adapter indicates that the deletion has
