@@ -431,6 +431,8 @@ updatedState.inFlight.loadedData = Ember.K;
 
 updatedState.uncommitted.loadedData = Ember.K;
 
+updatedState.inFlight.becomeDirty = Ember.K;
+
 var RootState = {
   // FLAGS
   isEmpty: false,
