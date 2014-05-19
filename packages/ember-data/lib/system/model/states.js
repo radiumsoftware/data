@@ -431,7 +431,11 @@ updatedState.inFlight.loadedData = Ember.K;
 
 updatedState.uncommitted.loadedData = Ember.K;
 
-updatedState.inFlight.becomeDirty = Ember.K;
+updatedState.uncommitted.didCommit = Ember.K;
+
+updatedState.inFlight.becomeDirty = function(record) {
+  record.transitionTo('updated.uncommitted');
+};
 
 var RootState = {
   // FLAGS
