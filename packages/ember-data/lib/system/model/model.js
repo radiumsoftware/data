@@ -240,8 +240,6 @@ DS.Model = Ember.Object.extend(Ember.Evented, LoadPromise, {
   },
 
   unloadRecord: function() {
-    Ember.assert("You can only unload a loaded, non-dirty record.", !get(this, 'isDirty'));
-
     this.send('unloadRecord');
   },
 

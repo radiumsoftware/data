@@ -670,7 +670,12 @@ var RootState = {
       },
 
       // FIXME:  REMEMBER TO READD THIS IF EVER UPDATING EMBER-DATA
-      loadedData: Ember.K
+      loadedData: Ember.K,
+
+      unloadRecord: function(record) {
+        record.clearRelationships();
+        record.transitionTo('deleted.saved');
+      }
     },
 
     // After a record's transaction is committing, but
