@@ -632,6 +632,10 @@ var RootState = {
         }
 
         record.trigger('didCommit', record);
+      },
+
+      finishedMaterializing: function(record) {
+        record.transitionTo('loaded.saved');
       }
     },
 
