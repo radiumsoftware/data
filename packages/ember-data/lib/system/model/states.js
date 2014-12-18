@@ -452,6 +452,10 @@ updatedState.inFlight.unloadRecord = function(record) {
   record.transitionTo('deleted.saved');
 };
 
+updatedState.uncommitted.finishedMaterializing = function(record) {
+  record.transitionTo('loaded.saved');
+};
+
 var RootState = {
   // FLAGS
   isEmpty: false,
