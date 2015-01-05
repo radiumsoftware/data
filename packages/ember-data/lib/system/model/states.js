@@ -375,6 +375,11 @@ var DirtyState = {
 
     invokeLifecycleCallbacks: function(record) {
       record.trigger('becameInvalid', record);
+    },
+
+    unloadRecord: function(record) {
+      record.clearRelationships();
+      record.transitionTo('deleted.saved');
     }
   }
 };
