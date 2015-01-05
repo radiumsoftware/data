@@ -798,7 +798,7 @@ DS.Serializer = Ember.Object.extend({
         tuples = idsOrTuples;
 
     if(idsOrTuples && Ember.isArray(idsOrTuples)) {
-      tuples = this._convertTuples(relationship.type, idsOrTuples);
+      tuples = this._convertTuples(relationship.type, idsOrTuples.compact());
     }
 
     record.materializeHasMany(name, tuples);
