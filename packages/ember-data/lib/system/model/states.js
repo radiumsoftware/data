@@ -791,6 +791,11 @@ var RootState = {
 
     invokeLifecycleCallbacks: function(record) {
       record.trigger('becameError', record);
+    },
+
+    unloadRecord: function(record) {
+      record.clearRelationships();
+      record.transitionTo('deleted.saved');
     }
   }
 };
