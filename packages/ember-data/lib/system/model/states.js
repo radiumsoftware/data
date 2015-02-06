@@ -461,6 +461,10 @@ updatedState.uncommitted.finishedMaterializing = function(record) {
   record.transitionTo('loaded.saved');
 };
 
+updatedState.uncommitted.reloadRecord = function(model) {
+  model.store.reloadRecord(model);
+};
+
 var RootState = {
   // FLAGS
   isEmpty: false,
