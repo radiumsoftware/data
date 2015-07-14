@@ -320,6 +320,10 @@ var DirtyState = {
       record.send('invokeLifecycleCallbacks');
     },
 
+    becomeDirty: function(record) {
+      record.transitionTo('updated.uncommitted');
+    },
+
     rollback: Ember.K,
 
     unloadRecord: function(record) {
@@ -380,6 +384,10 @@ var DirtyState = {
     unloadRecord: function(record) {
       record.clearRelationships();
       record.transitionTo('deleted.saved');
+    },
+
+    loadedData: function(record) {
+      record.transitionTo('loaded.created.uncommitted');
     }
   }
 };
@@ -781,7 +789,11 @@ var RootState = {
         record.trigger('didCommit', record);
       },
 
-      becomeDirty: Ember.K
+      becomeDirty: Ember.K,
+
+      unloadRecord: function(record) {
+        record.clearRelationships();
+      }
     }
   },
 
