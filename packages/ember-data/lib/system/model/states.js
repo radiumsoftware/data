@@ -575,6 +575,9 @@ var RootState = {
           once(function() {
             record.trigger('didLoad');
           });
+        },
+        loadedData: function(record) {
+          record.transitionTo('loaded.created.uncommitted');
         }
       }
     },
@@ -601,6 +604,11 @@ var RootState = {
       },
 
       reloadRecord: Ember.K,
+
+      becameError: function(record) {
+        record.transitionTo('error');
+        record.send('invokeLifecycleCallbacks');
+      }
     },
 
     // If there are no local changes to a record, it remains
