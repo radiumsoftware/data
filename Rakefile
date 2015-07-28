@@ -8,6 +8,16 @@ task :dist => "ember:dist"
 task :test, [:suite] => "ember:test"
 task :default => :dist
 
+task :copy_to_c2 => :dist do
+  front_end_path = File.expand_path "../../frontend/vendor/javascripts/", __FILE__
+  dist_path = File.expand_path "../dist", __FILE__
+
+  [File.join(dist_path, "ember-data.js"), File.join(dist_path, "ember-data.min.js")].each do |file|
+    # sh %Q{"cp #{file} #{front_end_path}"}
+    `cp #{file} #{front_end_path}`
+  end
+end
+
 task :publish_build do
   root = File.expand_path(File.dirname(__FILE__)) + '/dist/'
   EmberDev::Publish.to_s3({
