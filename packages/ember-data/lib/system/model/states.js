@@ -326,6 +326,8 @@ var DirtyState = {
 
     rollback: Ember.K,
 
+    willSetProperty: willSetProperty,
+
     unloadRecord: function(record) {
       record.clearRelationships();
       record.transitionTo('deleted.saved');
@@ -585,6 +587,8 @@ var RootState = {
     reloading: {
       // FLAGS
       isReloading: true,
+
+      willSetProperty: willSetProperty,
 
       // TRANSITIONS
       enter: function(record) {
