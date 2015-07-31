@@ -327,6 +327,7 @@ var DirtyState = {
     rollback: Ember.K,
 
     willSetProperty: willSetProperty,
+    didSetProperty: didSetProperty,
 
     unloadRecord: function(record) {
       record.clearRelationships();
@@ -590,6 +591,7 @@ var RootState = {
 
       willSetProperty: willSetProperty,
 
+      didSetProperty: didSetProperty,
       // TRANSITIONS
       enter: function(record) {
         var store = get(record, 'store');
@@ -612,7 +614,13 @@ var RootState = {
       becameError: function(record) {
         record.transitionTo('error');
         record.send('invokeLifecycleCallbacks');
-      }
+      },
+
+
+      becomeDirty: function(record) {
+        record.transitionTo('updated.uncommitted');
+      },
+
     },
 
     // If there are no local changes to a record, it remains
