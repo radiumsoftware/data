@@ -839,6 +839,14 @@ var RootState = {
 
       record.trigger('becameError', record);
     },
+
+    didCommit: function(record) {
+      record.withTransaction(function(t) {
+        t.remove(record);
+      });
+
+      record.send('invokeLifecycleCallbacks', get(record, 'lastDirtyType'));
+    }
   }
 };
 
