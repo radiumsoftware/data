@@ -677,6 +677,12 @@ var RootState = {
 
       finishedMaterializing: function(record) {
         record.transitionTo('loaded.saved');
+      },
+
+      becameError: function(record) {
+        record.transitionTo('loaded.saved');
+
+        record.trigger('becameError', record);
       }
     },
 
