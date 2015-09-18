@@ -616,11 +616,13 @@ var RootState = {
         record.send('invokeLifecycleCallbacks');
       },
 
-
       becomeDirty: function(record) {
         record.transitionTo('updated.uncommitted');
       },
 
+      finishedMaterializing: function(record) {
+        record.transitionTo('loaded.saved');
+      }
     },
 
     // If there are no local changes to a record, it remains
