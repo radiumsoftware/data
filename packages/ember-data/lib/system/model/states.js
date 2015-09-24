@@ -544,7 +544,9 @@ var RootState = {
 
     reloadRecord: function(model) {
       model.store.reloadRecord(model);
-    }
+    },
+
+    willSetProperty: willSetProperty
   },
 
   // A record enters this state when its data is populated.
