@@ -478,6 +478,8 @@ updatedState.uncommitted.reloadRecord = function(model) {
   model.store.reloadRecord(model);
 };
 
+updatedState.uncommitted.invokeLifecycleCallbacks = Ember.K;
+
 var RootState = {
   // FLAGS
   isEmpty: false,
